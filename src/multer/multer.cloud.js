@@ -15,6 +15,7 @@ export const uploadImage = (customValidation=uploadValidation.image) => {
 
     const fileFilter = (req, file, cb) => {
         if (customValidation.includes(file.mimetype)) {
+
             cb(null, true)
         } else {
             cb(new AppError("invalid file", 400), false)

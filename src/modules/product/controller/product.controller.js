@@ -12,12 +12,15 @@ export const getAllProducts = catchError(getData(ProductModel))
 
 export const addProduct = catchError(async (req, res, next) => {
     const { name } = req.body
-    const { public_id, secure_url } = await cloudinary.uploader.upload(req.file.path, { folder: "E-Commerce/product/productsImage" })
-    req.body.logo = { public_id, secure_url }
+    // console.log(req);
+    if(req.file){
+        const { public_id, secure_url } = await cloudinary.uploader.upload(req.file.path, { folder: "E-Commerce/product/productsImage" })
+        req.body.logo = { public_id, secure_url }
+    }
     const slug = slugify(name, "-")
     req.body.slug = slug
-    const result = await ProductModel.create(req.body)
-    res.status(201).json({ message: "success", result })
+    // const result = await ProductModel.create(req.body)
+    res.status(201).json({ message: "success", result : req.body})
 })
 
 export const addProductImage = catchError(async (req, res, next) => {

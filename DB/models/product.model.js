@@ -33,21 +33,11 @@ const ProductSchema = new Schema(
     sizes: { type: [String] },
     images: [{ public_id: String, secure_url: String }],
     logo: { public_id: String, secure_url: String },
-    // category: {
-    //   type: Types.ObjectId,
-    //   require: [true, "Product Category Require"],
-    //   ref: "category",
-    // },
-    // subCategory: {
-    //   type: Types.ObjectId,
-    //   require: [true, "Product SubCategory Require"],
-    //   ref: "subCategory",
-    // },
-    // brand: {
-    //   type: Types.ObjectId,
-    //   require: [true, "Product Brand Require"],
-    //   ref: "brand",
-    // },
+    category: {
+      type: Types.ObjectId,
+      require: [true, "Product Category Require"],
+      ref: "category",
+    },
   }, {
   toJSON: { virtuals: true },
   toObject: { virtuals: true }

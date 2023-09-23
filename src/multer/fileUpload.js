@@ -2,7 +2,7 @@
 
 
 import multer from 'multer'
-import { AppError } from '../../util/AppError.js'
+import { AppError } from '../util/Error/AppError.js';
 
 
 
@@ -13,7 +13,6 @@ export const uploadSingleFile = (fieldName, folderName) => {
             cb(null, `uploads/${folderName}`)
         },
         filename: (req, file, cb) => {
-            console.log(file);
             const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9) + file.originalname
             // const uniqueSuffix = file.originalname
             cb(null, file.fieldname + '-' + uniqueSuffix)

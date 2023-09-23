@@ -50,7 +50,8 @@ export const verifyemail = catchError(async (req, res, next) => {
 
 export const signin = catchError(async (req, res, next) => {
     const { email, password } = req.body
-    const result = await UserModel.findOne({ email })
+    const result = await UserModel.findOne({ email : {$regex: `^${email}$`, $options : "i"} })
+    console.log(result);
     if (!result) {
         return next(new AppError("Email Nor Register, please register as firest"))
     }

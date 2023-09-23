@@ -15,6 +15,7 @@ import {
 } from "./controller/product.controller.js";
 import { uploadImage, uploadValidation } from "../../multer/multer.cloud.js";
 import { validate } from "../../middleware/validation.js";
+import { uploadSingleFile } from "../../multer/fileUpload.js";
 
 
 const productRouter = Router();

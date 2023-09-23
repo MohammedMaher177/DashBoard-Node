@@ -14,12 +14,7 @@ export const addProductValidation = {
         totalAmount: joi.number().min(0),
         paymentPrice: joi.number().min(0),
         colors: joi.array().items(joi.string().required()),
-        sizes: joi.array().items(joi.string().required()),
-        images: joi.array().items(joi.string().required()),
-        logo: joi.string(),
         category: joi.string().hex().length(24).required(),
-        subCategory: joi.string().hex().length(24).required(),
-        brand: joi.string().hex().length(24).required(),
     })
 }
 
