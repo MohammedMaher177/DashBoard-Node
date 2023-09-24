@@ -36,12 +36,13 @@ const ProductSchema = new Schema(
     category: {
       type: Types.ObjectId,
       require: [true, "Product Category Require"],
-      ref: "category",
+      ref: "Category",
     },
-  }, {
-  toJSON: { virtuals: true },
-  toObject: { virtuals: true }
-},
+  },
+  {
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true },
+  },
   { timestamps: true }
 );
 
@@ -55,15 +56,18 @@ const ProductSchema = new Schema(
 //   // justOne: true,
 // });
 
-
-// ProductSchema.pre("findOne", function () {
-//   this.populate([{
-//     path: "reviews"
-//   }, {
-//     path: "brand"
-//   },
-//   {
-//     path: "category"
-//   }])
-// })
+ProductSchema.pre("find", function () {
+  // this.populate([
+  // {
+  //   path: "reviews"
+  // }, {
+  //   path: "brand"
+  // },
+  //   {
+  //     path: "category",
+  //   },
+  // ]);
+  this.populate("category", "name");
+  console.log(this);
+});
 export const ProductModel = model("Product", ProductSchema);
