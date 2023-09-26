@@ -11,7 +11,7 @@ const categoryRouter = Router();
 /**Get All Categories && Add Category */
 categoryRouter.route("/")
     .get(getAllCategories)
-    .post( validate(addCategoryValidation),authMiddleware, allowedTo("admin"), addCategory)
+    .post(uploadImage(uploadValidation.image).single("CategoryImage"), validate(addCategoryValidation), addCategory)
 
 
 categoryRouter.post("/addPhoto", uploadImage(uploadValidation.image).single("logo"), addPhoto)

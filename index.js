@@ -8,7 +8,7 @@ import { bootstrap } from "./src/app.routes.js";
 import cookieParser from "cookie-parser";
 
 const app = express();
-const port = 3001; 
+const port = 5000; 
 
 app.use(cors());
 app.use(cookieParser())

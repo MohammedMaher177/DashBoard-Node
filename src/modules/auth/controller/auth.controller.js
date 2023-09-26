@@ -49,6 +49,7 @@ export const verifyemail = catchError(async (req, res, next) => {
 })
 
 export const signin = catchError(async (req, res, next) => {
+    console.log(req.body);
     const { email, password } = req.body
     const result = await UserModel.findOne({ email : {$regex: `^${email}$`, $options : "i"} })
     console.log(result);

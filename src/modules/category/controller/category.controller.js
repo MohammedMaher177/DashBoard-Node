@@ -18,17 +18,16 @@ export const getCategory = catchError(getDocById(CategoryModel));
 
 export const addCategory = catchError(async (req, res, next) => {
   const { name, description } = req.body;
-  console.log(name);
   const slug = slugify(name, "-");
   const existName = await CategoryModel.findOne({ name });
   if (existName) {
     return next(new AppError("Name Already exist", 409));
   }
-  // const { public_id, secure_url } = await cloudinary.uploader.upload(req.file.path, { folder: "E-Commerce/product/productsImage" })
-  // req.body.logo = { public_id, secure_url }
+  const { public_id, secure_url } = await cloudinary.uploader.upload(req.file.path, { folder: "E-Commerce/product/productsImage" })
+  req.body.logo = { public_id, secure_url }
   req.body.slug = slug;
   const result = await CategoryModel.create(req.body);
-  res.json({ message: "success", result });
+  res.json({ message: "success",result });
 });
 
 export const UpdateCategory = catchError(async (req, res, next) => {
